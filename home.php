@@ -6,6 +6,7 @@
 <head>
     <title>My CMS</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -37,7 +38,7 @@
     </nav>
 
     <!-- Header Section -->
-    <div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid p-0 m-0 position-relative">
         <?php
         // Get the page content
         $result = $conn->query("SELECT * FROM pages WHERE url = '$url' LIMIT 1");
@@ -47,11 +48,11 @@
             ?>
             
         <!-- <div class="container-fluid"> -->
-            <img src="<?= $page['banner'] ?>" class="img-fluid w-100" alt="Banner">
+            <img src="<?= $page['banner'] ?>" class="img-fluid w-100" style="height: 400px;" alt="Banner">
             <div class="overlay"></div>
-            <div class="content">
-                <h2><?= $page['title'] ?></h2>
-                <p><?= $page['header'] ?></p>
+            <div class="content position-absolute top-50 start-50 translate-middle text-center" style="z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <h2 class="text-center text-white"><?= $page['title'] ?></h2>
+                <p class="text-center text-white"><?= $page['header'] ?></p>
             </div>
         <!-- </div> -->
     </div>
@@ -70,7 +71,7 @@
                 <h3><?= $section['name'] ?></h3>
                 <p><?= $section['content'] ?></p>
             </div>
-        </div>
+        </div><hr>
         <?php
             }
             ?>
@@ -82,6 +83,23 @@
         }
         ?>
     </div>
+    <footer class="bg-dark text-white py-3">
+        <div class="container">
+            <div class="row">
+            <div class="col-12 col-md-6">
+                <p class="mb-0">© 2023 My Company, Inc. All rights reserved.</p>
+            </div>
+            <div class="col-12 col-md-6">
+                <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                <li class="mx-3"><a href="#" class="text-white">Privacy Policy</a></li>
+                <li class="mx-3"><a href="#" class="text-white">Terms of Service</a></li>
+                <li class="mx-3"><a href="#" class="text-white">Contact Us</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </footer>
+
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
