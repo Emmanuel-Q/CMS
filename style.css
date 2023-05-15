@@ -7,3 +7,27 @@
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0.5;
   }
+
+  /* Style for the main content */
+  .main {
+    padding: 20px;
+  }
+  
+  /* Style for the navigation tabs */
+  .nav-tabs .nav-item .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .nav-tabs .nav-item .nav-link:hover {
+    background-color: #e9ecef;
+    color: #000;
+  }
+  
+  .nav-tabs .nav-item .nav-link {
+    background-color: #f8f9fa;
+    color: #000;
+    border: none;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+  }

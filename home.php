@@ -76,7 +76,6 @@
             }
             ?>
 
-        <p><?= $page['footer'] ?></p>
         <?php
         } else {
             echo "Page not found";
@@ -87,6 +86,7 @@
         <div class="container">
             <div class="row">
             <div class="col-12 col-md-6">
+                <p><?= $page['footer'] ?></p>
                 <p class="mb-0">© 2023 My Company, Inc. All rights reserved.</p>
             </div>
             <div class="col-12 col-md-6">
