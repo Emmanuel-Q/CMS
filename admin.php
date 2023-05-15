@@ -41,7 +41,7 @@
     <h5>Hello Admin!</h5>
   </li>
   <li class="nav-item ml-2">
-    <button type="submit" class="btn btn-danger"><i class="bi bi-box-arrow-left"></i> Logout</button>
+    <a href="logout.php" class="btn btn-danger"><i class="bi bi-box-arrow-left"></i> Logout</a>
   </li>
 </ul>
 
@@ -79,7 +79,7 @@
                 <label for='banner'>Banner:</label>
                 <input type='file' name='banner' id='banner' class="form-control">
             </div>
-            <button type='submit' class="btn btn-primary">Create Page</button>
+            <button type='submit' class="btn btn-success">Create Page</button>
         </form>
     </div>
   </div><br>
@@ -110,7 +110,7 @@
                         } ?>
                 </select>
             </div>
-            <button type='submit' class="btn btn-primary">Create Section</button>
+            <button type='submit' class="btn btn-success">Create Section</button>
         </form>
     </div>
   </div>
@@ -146,7 +146,7 @@
                         <td><?php echo $page['footer']; ?></td>
                         <td><?php echo $page['banner']; ?></td>
                         <td>
-                            <a href="edit_page.php?id=<?php echo $page['id']; ?>" title="Edit" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a href="edit/edit_page.php?id=<?php echo $page['id']; ?>" title="Edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                             <a href="delete_page.php?id=<?php echo $page['id']; ?>" title="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this page?')"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
@@ -184,11 +184,11 @@
                     <tr>
                         <td><?php echo $section['id']; ?></td>
                         <td><?php echo $section['name']; ?></td>
-                        <td><?php echo substr($section['content'], 0,90); ?></td>
+                        <td><?php echo substr($section['content'], 0,80); ?></td>
                         <td><?php echo $section['image']; ?></td>
                         <td><?php echo $section['page_title']; ?></td>
                         <td>
-                            <a href="edit_section.php?id=<?php echo $section['id']; ?>" title="Edit" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a href="edit_section.php?id=<?php echo $section['id']; ?>" title="Edit" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                             <a href="delete_section.php?id=<?php echo $section['id']; ?>" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this section?')"><i class="bi bi-trash3"></i></i></a>
                         </td>
                     </tr>

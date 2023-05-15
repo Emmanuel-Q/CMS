@@ -34,6 +34,7 @@
                 echo "</ul>";
             }
             ?>
+            <a href="user.php" class="btn btn-primary">Login</a>
         </div>
     </nav>
 
@@ -48,7 +49,7 @@
             ?>
             
         <!-- <div class="container-fluid"> -->
-            <img src="<?= $page['banner'] ?>" class="img-fluid w-100" style="height: 400px;" alt="Banner">
+            <img src="<?= $page['banner'] ?>" class="img-fluid w-100" style="height: 450px;" alt="Banner">
             <div class="overlay"></div>
             <div class="content position-absolute top-50 start-50 translate-middle text-center" style="z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 <h2 class="text-center text-white"><?= $page['title'] ?></h2>
