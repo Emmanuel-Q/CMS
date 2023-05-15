@@ -4,6 +4,6 @@ session_start();
 $_SESSION = array();
 session_destroy();
 
-header("Location: user.php");
+header("Location: home.php");
 exit();
 ?>
