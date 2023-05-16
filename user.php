@@ -15,6 +15,12 @@
   <div class="login-form">
     <h2 class="text-center">Login</h2>
     <form action="login.php" method="post">
+      
+    <?php if (isset($_GET['error'])) { ?>
+
+      <p class="error"><?php echo $_GET['error']; ?></p>
+
+      <?php } ?>
       <div class="form-group">
         <input type="text" name="username" class="form-control" placeholder="Username" required="required">
       </div>

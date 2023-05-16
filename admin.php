@@ -1,4 +1,11 @@
 <?php 
+  
+    session_start();
+
+    if (!isset($_SESSION['loggedin'])) {
+        header('Location: user.php');
+    }
+
     include 'config/db_connect.php'; 
     include 'functions.php';
 
@@ -8,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bootstrap Admin Dashboard</title>
+  <title>CMS Admin Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -146,7 +153,7 @@
                         <td><?php echo $page['footer']; ?></td>
                         <td><?php echo $page['banner']; ?></td>
                         <td>
-                            <a href="edit/edit_page.php?id=<?php echo $page['id']; ?>" title="Edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                            <a href="edit_page.php?id=<?php echo $page['id']; ?>" title="Edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                             <a href="delete_page.php?id=<?php echo $page['id']; ?>" title="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this page?')"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>

@@ -1,5 +1,5 @@
 <?php
-    require_once '../config/db_connect.php';
+    require_once 'config/db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pageId = $_POST['page_id'];
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Update page without changing the image in the database
         $sql = "UPDATE pages SET url='$url', title='$title', header='$header', footer='$footer' WHERE id='$pageId'";
         if ($conn->query($sql) === TRUE) {
-            echo "Second Page updated successfully";
+            echo " Page updated successfully";
         } else {
             echo "Error updating page: " . $conn->error;
         }

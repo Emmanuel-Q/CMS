@@ -1,5 +1,5 @@
-<?php require_once '../config/db_connect.php';
-    include '../functions.php';
+<?php require_once 'config/db_connect.php';
+    include 'functions.php';
 
 // Retrieve the page data based on the ID
 $pageId = $_GET['id']; 
@@ -25,7 +25,7 @@ if (!$page) {
 
     <div class="container mt-5">
         <h2 class="text-center">Edit Page</h2>
-        <a href="../admin.php" class="btn btn-primary">Back</a>
+        <a href="admin.php" class="btn btn-primary">Back</a>
         <form method="POST" enctype="multipart/form-data" action="update_page.php">
             <input type="hidden" name="page_id" value="<?php echo $page['id']; ?>">
             

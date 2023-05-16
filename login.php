@@ -14,10 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if a user was found
     if ($result->num_rows == 1) {
         session_start();
+        $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
         header("Location: admin.php");
+        exit();
     } else {
-        echo "Invalid username or password";
+        header("Location: user.php?error=Invalid username or password");
+        exit();
     }
 }
 ?>
