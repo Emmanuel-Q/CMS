@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
         // Delete all sections associated with the page
         $deleteSectionsQuery = "DELETE FROM sections WHERE page_id = $pageId";
         if ($conn->query($deleteSectionsQuery) === TRUE) {
-            echo "Page and its associated sections deleted successfully";
+            header("Location: success.php");
         } else {
             echo "Error deleting associated sections: " . $conn->error;
         }

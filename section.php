@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
             $sql = "INSERT INTO sections (name, content, image, page_id) VALUES ('$name', '$content', '$target_file', '$page_id')";
             if ($conn->query($sql) === TRUE) {
-                echo "Section created successfully";
+                header("Location: success.php");
             } else {
                 echo "Error creating section: " . $conn->error;
             }

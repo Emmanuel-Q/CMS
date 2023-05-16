@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Update page with new image in the database
                 $sql = "UPDATE pages SET url='$url', title='$title', header='$header', banner='$target_file', footer='$footer' WHERE id='$pageId'";
                 if ($conn->query($sql) === TRUE) {
-                    echo "Page updated successfully";
+                    header("Location: success.php");
                 } else {
                     echo "Error updating page: " . $conn->error;
                 }
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Update page without changing the image in the database
         $sql = "UPDATE pages SET url='$url', title='$title', header='$header', footer='$footer' WHERE id='$pageId'";
         if ($conn->query($sql) === TRUE) {
-            echo " Page updated successfully";
+            header("Location: success.php");
         } else {
             echo "Error updating page: " . $conn->error;
         }

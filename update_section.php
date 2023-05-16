@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Execute the update query
     if ($conn->query($sql) === TRUE) {
-        echo "Section updated successfully";
+        header("Location: success.php");
     } else {
         echo "Error updating section: " . $conn->error;
     }

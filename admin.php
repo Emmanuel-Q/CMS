@@ -45,7 +45,7 @@
     <a class="nav-link" data-toggle="tab" href="#view_sections">View Sections</a>
   </li>
   <li class="nav-item ml-auto">
-    <h5>Hello Admin!</h5>
+    <h5>Hello <?=$_SESSION['username']?>!</h5>
   </li>
   <li class="nav-item ml-2">
     <a href="logout.php" class="btn btn-danger"><i class="bi bi-box-arrow-left"></i> Logout</a>
@@ -124,7 +124,7 @@
 
   <!-- Section to view all pages -->
   <div id="view_pages" class="tab-pane fade">
-    <div class="container">
+    <div class="">
         <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -153,8 +153,8 @@
                         <td><?php echo $page['footer']; ?></td>
                         <td><?php echo $page['banner']; ?></td>
                         <td>
-                            <a href="edit_page.php?id=<?php echo $page['id']; ?>" title="Edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                            <a href="delete_page.php?id=<?php echo $page['id']; ?>" title="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this page?')"><i class="bi bi-trash3"></i></a>
+                            <a href="edit_page.php?id=<?php echo $page['id']; ?>" title="Edit" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                            <a href="delete_page.php?id=<?php echo $page['id']; ?>" title="Delete" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this page?')"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
                     <?php

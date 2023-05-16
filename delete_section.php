@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
 
     // Execute the delete query
     if ($conn->query($sql) === TRUE) {
-        echo "Section deleted successfully";
+        header("Location: success.php");
     } else {
         echo "Error deleting section: " . $conn->error;
     }

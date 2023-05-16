@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (move_uploaded_file($_FILES["banner"]["tmp_name"], $target_file)) {
             $sql = "INSERT INTO pages (url, title, header, banner, footer) VALUES ('$url', '$title', '$header', '$target_file', '$footer')";
             if ($conn->query($sql) === TRUE) {
-                echo "Page created successfully";
+                header("Location: success.php");
             } else {
                 echo "Error creating page: " . $conn->error;
             }
