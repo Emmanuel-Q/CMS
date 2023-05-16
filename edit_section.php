@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
     <title>My CMS</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- CKEditor -->
+    <script src="js/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
             </div>
             <div class="form-group">
                 <label>Content:</label>
-                <textarea name="content" class="form-control" rows="5"
+                <textarea name="content" id="editor" class="form-control" rows="5"
                     required><?php echo $section['content']; ?></textarea>
             </div>
             <div class="form-group">
@@ -70,6 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
     </div>
 
     <!-- Scripts -->
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

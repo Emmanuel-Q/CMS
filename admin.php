@@ -24,6 +24,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- CKEditor -->
+  <script src="js/ckeditor/ckeditor.js"></script>
 </head>
 <body class="m-4">
 
@@ -102,7 +105,7 @@
             </div>
             <div class="form-group">
                 <label for='content'>Content:</label>
-                <textarea name='content' id='content' class="form-control"></textarea>
+                <textarea name='content' id='editor' class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <label for='image'>Image:</label>
@@ -209,5 +212,9 @@
   </div>
 </div>
 
+
+<script>
+     CKEDITOR.replace('editor');
+</script>
 </body>
 </html>
