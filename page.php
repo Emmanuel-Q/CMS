@@ -1,11 +1,13 @@
 <?php
-require_once 'config/db_connect.php';
+require_once 'admin/config/db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $url = $_POST['url'];
     $title = $_POST['title'];
     $header = $_POST['header'];
     $footer = $_POST['footer'];
+    $publishStatus = isset($_POST['publish']) ? 1 : 0;
+    
 
     // Handle file upload
     $target_dir = "uploads/";
@@ -20,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if ($uploadOk == 1 && $imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg" || $imageFileType == "gif") {
         if (move_uploaded_file($_FILES["banner"]["tmp_name"], $target_file)) {
-            $sql = "INSERT INTO pages (url, title, header, banner, footer) VALUES ('$url', '$title', '$header', '$target_file', '$footer')";
+            $sql = "INSERT INTO pages (url, title, header, banner, footer, published) VALUES ('$url', '$title', '$header', '$target_file', '$footer', '$publishStatus')";
             if ($conn->query($sql) === TRUE) {
                 header("Location: success.php");
             } else {

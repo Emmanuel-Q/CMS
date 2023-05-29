@@ -3,7 +3,7 @@
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
     $pageId = $_GET['id'];
 
-    require_once 'config/db_connect.php';
+    require_once 'admin/config/db_connect.php';
 
     // Prepare the delete query for deleting the page
     $deletePageQuery = "DELETE FROM pages WHERE id = $pageId";

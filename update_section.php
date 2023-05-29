@@ -1,7 +1,5 @@
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     $sectionId = $_POST['section_id'];
 
     // Retrieve the form data
@@ -9,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $content = $_POST['content'];
     $image = $_FILES['image']['name'];
     $pageId = $_POST['page_id'];
+    $publish = isset($_POST['publish']) ? 1 : 0; // New field for publish status
 
     // Handle file upload
     if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -17,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
     }
 
-    require_once 'config/db_connect.php';
+    require_once 'admin/config/db_connect.php';
 
     // Prepare the update query
-    $sql = "UPDATE sections SET name = '$name', content = '$content', page_id = '$pageId'";
-    
+    $sql = "UPDATE sections SET name = '$name', content = '$content', page_id = '$pageId', published = '$publish'";
+
     // Check if a new image was uploaded
     if ($image) {
         $sql .= ", image = '$targetFile'";
@@ -35,6 +34,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Error updating section: " . $conn->error;
     }
-
 }
 ?>

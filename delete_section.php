@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
     
     $sectionId = $_GET['id'];
 
-    require_once 'config/db_connect.php';
+    require_once 'admin/config/db_connect.php';
 
     // Prepare the delete query
     $sql = "DELETE FROM sections WHERE id = $sectionId";

@@ -1,4 +1,4 @@
-<?php require_once 'config/db_connect.php'; ?>
+<?php require_once 'admin/config/db_connect.php'; ?>
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@
              $url = isset($_GET['url']) ? $_GET['url'] : 'home';
 
             // Display the pages in the navigation bar
-            $result = $conn->query("SELECT * FROM pages");
+            $result = $conn->query("SELECT * FROM pages WHERE published = 1");
             if ($result && $result->num_rows > 0) {
                 echo "<ul class='navbar-nav ml-auto'>";
                 while ($page = $result->fetch_assoc()) {
@@ -34,7 +34,7 @@
                 echo "</ul>";
             }
             ?>
-            <a href="user.php" class="btn btn-primary">Login</a>
+            <a href="admin/pages/samples/login.php" class="btn btn-primary">Login</a>
         </div>
     </nav>
 
@@ -42,7 +42,7 @@
     <div class="jumbotron jumbotron-fluid p-0 m-0 position-relative">
         <?php
         // Get the page content
-        $result = $conn->query("SELECT * FROM pages WHERE url = '$url' LIMIT 1");
+        $result = $conn->query("SELECT * FROM pages WHERE url = '$url' AND published = 1 LIMIT 1");
         if ($result && $result->num_rows > 0) {
             $page = $result->fetch_assoc();
             $page_id = $page['id'];
@@ -60,29 +60,32 @@
 
     <div class="container mt-4">
         <?php
-            // Display the sections
-            $sections = $conn->query("SELECT * FROM sections WHERE page_id = $page_id");
-            while ($section = $sections->fetch_assoc()) {
-                ?>
-        <div class="row">
-            <div class="col-md-6">
-                <img src="<?= $section['image'] ?>" class="img-fluid mb-4" alt="Image">
-            </div>
-            <div class="col-md-6">
-                <h3><?= $section['name'] ?></h3>
-                <p><?= $section['content'] ?></p>
-            </div>
-        </div><hr>
-        <?php
-            }
+        // Fetch published sections from the database
+        $sections = $conn->query("SELECT * FROM sections WHERE published = 1 AND page_id = $page_id");
+
+        while ($section = $sections->fetch_assoc()) {
             ?>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="<?= $section['image'] ?>" class="img-fluid mb-4" alt="Image">
+                </div>
+                <div class="col-md-6">
+                    <h3><?= $section['name'] ?></h3>
+                    <p><?= $section['content'] ?></p>
+                </div>
+            </div>
+            <hr>
+            <?php
+        }
+        ?>
 
         <?php
-        } else {
-            echo "Page not found";
+        if ($sections->num_rows === 0) {
+            echo "No published sections found";
         }
         ?>
     </div>
+
     <footer class="bg-dark text-white py-3">
         <div class="container">
             <div class="row">
@@ -109,3 +112,4 @@
 </body>
 
 </html>
+<?php } ?>
