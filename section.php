@@ -2,9 +2,10 @@
 require_once 'admin/config/db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $content = $_POST['content'];
-    $page_id = $_POST['page_id'];
+    
+    $name = trim($_POST['name']);
+    $content = ($_POST['content']);
+    $page_id = intval($_POST['page_id']);
     $publish = isset($_POST['publish']) ? 1 : 0;
 
     $target_file = "";
@@ -33,12 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Insert the section into the database
-    $sql = "INSERT INTO sections (name, content, image, page_id, published) VALUES ('$name', '$content', '$target_file', '$page_id', '$publish')";
-    if ($conn->query($sql) === TRUE) {
+    // Prepare the SQL statement using a prepared statement
+    $stmt = $conn->prepare("INSERT INTO sections (name, content, image, page_id, published) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssi", $name, $content, $target_file, $page_id, $publish);
+
+    // Execute the prepared statement
+    if ($stmt->execute()) {
         header("Location: success.php");
     } else {
-        echo "Error creating section: " . $conn->error;
+        echo "Error creating section: " . $stmt->error;
     }
+
+    // Close the statement
+    $stmt->close();
 }
 ?>

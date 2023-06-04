@@ -1,12 +1,13 @@
 <?php
-    require_once 'admin/config/db_connect.php';
+require_once 'admin/config/db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $pageId = $_POST['page_id'];
-    $url = $_POST['url'];
-    $title = $_POST['title'];
-    $header = $_POST['header'];
-    $footer = $_POST['footer'];
+    
+    $pageId = intval($_POST['page_id']);
+    $url = trim($_POST['url']);
+    $title = trim($_POST['title']);
+    $header = trim($_POST['header']);
+    $footer = trim($_POST['footer']);
     $publish = isset($_POST['publish']) ? 1 : 0;
 
     // Check if a new image is uploaded
@@ -20,28 +21,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if the uploaded file is an image
         if (in_array($imageFileType, $allowedExtensions)) {
             if (move_uploaded_file($_FILES["banner"]["tmp_name"], $target_file)) {
-                // Update page with new image and publish status in the database
-                $sql = "UPDATE pages SET url='$url', title='$title', header='$header', banner='$target_file', footer='$footer', published='$publish' WHERE id='$pageId'";
-                if ($conn->query($sql) === TRUE) {
+                // Prepare the SQL statement using a prepared statement
+                $stmt = $conn->prepare("UPDATE pages SET url=?, title=?, header=?, banner=?, footer=?, published=? WHERE id=?");
+                $stmt->bind_param("ssssssi", $url, $title, $header, $target_file, $footer, $publish, $pageId);
+
+                // Execute the prepared statement
+                if ($stmt->execute()) {
                     header("Location: success.php");
                 } else {
-                    echo "Error updating page: " . $conn->error;
+                    echo "Error updating page: " . $stmt->error;
                 }
+
+                // Close the statement
+                $stmt->close();
             } else {
                 echo "Error uploading image";
             }
         } else {
-            echo "File is not an image";
+            echo "Invalid image file";
         }
     } else {
-        // Update page without changing the image and publish status in the database
-        $sql = "UPDATE pages SET url='$url', title='$title', header='$header', footer='$footer', published='$publish' WHERE id='$pageId'";
-        if ($conn->query($sql) === TRUE) {
+        // Prepare the SQL statement using a prepared statement
+        $stmt = $conn->prepare("UPDATE pages SET url=?, title=?, header=?, footer=?, published=? WHERE id=?");
+        $stmt->bind_param("sssssi", $url, $title, $header, $footer, $publish, $pageId);
+
+        // Execute the prepared statement
+        if ($stmt->execute()) {
             header("Location: success.php");
         } else {
-            echo "Error updating page: " . $conn->error;
+            echo "Error updating page: " . $stmt->error;
         }
+
+        // Close the statement
+        $stmt->close();
     }
 }
-
 ?>
